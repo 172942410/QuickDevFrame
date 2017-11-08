@@ -1,6 +1,6 @@
-package com.extendservice.fragment;
+package com.wifi12306.fragment;
 
-import com.extendservice.R;
+import com.wifi12306.R;
 
 
 /**

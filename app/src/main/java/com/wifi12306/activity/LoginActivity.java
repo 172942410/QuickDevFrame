@@ -1,13 +1,12 @@
-package com.extendservice.activity;
+package com.wifi12306.activity;
 
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.extendservice.R;
-import com.extendservice.bean.LoginBean;
+import com.wifi12306.R;
+import com.wifi12306.bean.LoginBean;
 import com.perry.activity.BaseCompatActivity;
 import com.perry.http.Listener.AppCallback;
 import com.perry.http.manager.RequestManager;
@@ -79,9 +78,6 @@ public class LoginActivity extends BaseCompatActivity implements View.OnClickLis
                 if (null != loginBean){
                     if (loginBean.statusId==0){
                         LoginBean.LoginDataBean dataBean = loginBean.data;
-                        Intent intent = new Intent(LoginActivity.this,ChooseUserActivity.class);
-                        startActivity(intent);
-                        finish();
                     }else {
                         ToastAlone.showToast(LoginActivity.this,loginBean.msg,Toast.LENGTH_SHORT).show();
                     }

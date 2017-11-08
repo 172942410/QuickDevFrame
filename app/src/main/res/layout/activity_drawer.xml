@@ -8,7 +8,7 @@
     tools:context="com.wifi12306.activity.MainActivity">
 
     <include layout="@layout/toolbar_cur" />
-
+    <include layout="@layout/view_drawerlayout"/>
     <Button
         android:onClick="changeColor"
         android:layout_width="match_parent"
@@ -32,13 +32,6 @@
         android:layout_margin="10dp"
         android:background="@color/base_background_tab_pressed"
         android:text="登录" />
-    <Button
-        android:onClick="test"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"
-        android:background="@color/base_background_tab_pressed"
-        android:text="测试" />
 
 
 

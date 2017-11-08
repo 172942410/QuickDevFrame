@@ -1,6 +1,6 @@
-package com.extendservice.activity;
+package com.wifi12306.activity;
 
-import com.extendservice.R;
+import com.wifi12306.R;
 import com.perry.activity.BaseCompatActivity;
 
 /**

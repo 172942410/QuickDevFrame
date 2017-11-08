@@ -1,4 +1,4 @@
-package com.extendservice.bean;
+package com.wifi12306.bean;
 
 import android.content.ContentValues;
 import android.database.Cursor;

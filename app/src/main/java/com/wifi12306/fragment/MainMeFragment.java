@@ -1,10 +1,10 @@
-package com.extendservice.fragment;
+package com.wifi12306.fragment;
 
 import android.content.Intent;
 import android.view.View;
 
-import com.extendservice.activity.SettingActivity;
-import com.extendservice.R;
+import com.wifi12306.activity.SettingActivity;
+import com.wifi12306.R;
 
 /**
  * 我的模块首页

@@ -14,7 +14,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.extendservice"
+        applicationId "com.wifi12306"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
