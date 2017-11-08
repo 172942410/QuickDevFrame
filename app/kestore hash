@@ -1,0 +1,32 @@
+输入密钥库口令:
+
+密钥库类型: JKS
+密钥库提供方: SUN
+
+您的密钥库包含 1 个条目
+
+别名: mobile12306accom
+创建日期: 2017-1-10
+条目类型: PrivateKeyEntry
+证书链长度: 1
+证书[1]:
+所有者: CN=tky, OU=tky, O=tky, L=beijing, ST=beijing, C=00
+发布者: CN=tky, OU=tky, O=tky, L=beijing, ST=beijing, C=00
+序列号: 30533514
+有效期开始日期: Tue Jan 10 18:03:29 GMT+08:00 2017, 截止日期: Thu Dec 17 18:03:29 GMT+08:00 2116
+证书指纹:
+         MD5: 8C:CF:84:6F:E1:0B:A0:D5:C8:6A:12:B7:B4:D0:BD:BE
+         SHA1: D0:9B:7D:AD:DF:70:71:7D:AD:31:F9:C2:71:94:5A:20:52:B6:73:27
+         SHA256: B9:6C:24:2B:87:A1:4F:70:F7:39:B5:38:43:27:C1:EF:86:1F:BA:3D:12:67:75:C4:94:D4:97:3A:45:78:25:C3
+         签名算法名称: SHA256withRSA
+         版本: 3
+
+扩展:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 0B CF 3E FE 6E 50 0E 84   4E 87 AC 92 E5 C5 25 62  ..>.nP..N.....%b
+0010: 11 FA 1F 93                                        ....
+]
+]

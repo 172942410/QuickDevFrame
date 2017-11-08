@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_wifi"
+    >
+
+    <!--<include layout="@layout/common_top_title" />-->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" 测 试 "
+        android:id="@+id/test_button"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:cacheColorHint="@color/transparent"
+        android:listSelector="@color/transparent"
+        android:divider="@null"
+        android:scrollbars="vertical"
+        android:background="#bbccaa"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+    <!--<ListView-->
+        <!--android:id="@+id/listView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:cacheColorHint="@color/transparent"-->
+        <!--android:listSelector="@color/transparent"-->
+        <!--android:divider="@null"></ListView>-->
+
+
+</LinearLayout>

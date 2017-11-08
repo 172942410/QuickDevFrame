@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">快速开发框架</string>
+    <string name="login">登录</string>
+    <string name="logout">退出登录</string>
+    <string name="system_setting">系统设置</string>
+    <string name="user_choose">请选择您的角色类型</string>
+    <string name="user_choose_title">选择类型</string>
+    <string name="user_info_title">担当信息</string>
+    <string name="departure_date">出发日期</string>
+    <string name="departure_train_num">出发车次</string>
+    <string name="departure_service">服务车厢</string>
+    <string name="ok">确定</string>
+</resources>

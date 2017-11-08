@@ -1,0 +1,10 @@
+<resources>
+    <string name="lib_name">BaseLibrary</string>
+    <string name="sample_blue_title">sample_blue_title</string>
+
+    <string-array name="tab_array">
+        <item>今日订单</item>
+        <item>历史订单</item>
+        <item>我的</item>
+    </string-array>
+</resources>

@@ -1,0 +1,2 @@
+include ':app', ':BaseLibrary', ':HttpLibrary'
+include ':Test'

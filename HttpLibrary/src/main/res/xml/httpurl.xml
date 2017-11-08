@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.sixin.cordova" version="0.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/ns/widgets"
+>
+    <!--<preference name="loglevel" value="DEBUG" />-->
+    <name>服务器接口注册</name>
+    <description>
+        需要网络请求的接口地址都必须在这里注册；否则无法使用此加载框架做网络请求
+    </description>
+    <author email="172942410@qq.com" href="http://www.baidu.com">
+        网络请求接口模块
+    </author>
+    <!--<content src="index.html" />-->
+    <!--服务器总地址-->
+    <!--<header url="http://test.wifi.12306.cn/wifiapps/"/>-->
+    <!--内网测试地址头-->
+    <!--<header url="http://61.233.11.73:8880/wifiapps/"/>-->
+    <header url="http://198.216.6.54:8080"/>
+    <!--测试微信支付首先需要用到的服务器地址-->
+    <!--<header url="http://114.255.140.184:8280/bl/wifiapps/"/>-->
+<!--接口请求地址的类名；此白名单 http-url 字段为请求的全部地址  -->
+    <!--http-suffix 为请求的后缀与 header里的url拼接成的请求地址-->
+
+    <!--<feature name="UserCenterPlugin">-->
+    <!--<param name="http-url" value="com.sixin.plugins.UserCenterPlugin" />-->
+    <!--</feature>-->
+
+
+    <!--1.17 根据查询条件查询订单-->
+    <feature name="QueryLogin">
+        <param type="http-suffix" value="/sendmeals/Meal/login" title="3.1.1 订餐登录接口" />
+    </feature>
+
+    <feature name="TrainStationQueryRequest">
+        <param type="http-url" value="http://test.wifi.12306.cn/wifiapps/ticket/cx/ypcx" title="余票查询接口" />
+    </feature>
+
+</widget>

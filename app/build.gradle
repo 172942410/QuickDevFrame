@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'mobile12306accom'
+            keyPassword '12306accom'
+//            storeFile file('/Users/lipengjun/Desktop/work/铁科院/svn/hlct_12306banlv/app/android/WIFI_AS/app/accom.keystore')
+//            storeFile file('12306.jks')
+            storeFile file('accom.keystore')
+            storePassword '12306accom'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.extendservice"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile project(':BaseLibrary')
+}

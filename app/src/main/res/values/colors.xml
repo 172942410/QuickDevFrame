@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="cs_btn_blue">#478bcc</color>
+    <color name="cs_btn_blue_press">#7abfff</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffffff</color>
+</resources>

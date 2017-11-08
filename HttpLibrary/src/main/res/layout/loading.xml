@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="60dip"
+    android:background="@drawable/background_addresslist_qunzu_bai"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="5dip" >
+
+    <LinearLayout
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:background="@drawable/background_addresslist_qunzu_bai"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="5dip" >
+
+        <com.perry.http.view.LoadingView
+            android:id="@+id/loading_progress"
+            android:layout_width="30dip"
+            android:layout_height="30dip"
+            android:layout_gravity="center_vertical|left"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0" />
+
+        <TextView
+            android:id="@+id/loading_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="努力加载..."
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/color_diaog_cancle"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/btn_cancel_view"
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="0"
+            android:background="@color/color_ffe9ea" />
+
+        <ImageView
+            android:id="@+id/btn_cancel"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0"
+            android:padding="5dp"
+            android:src="@drawable/icon_login_shanchu" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/loading_progressbar"
+        android:layout_width="match_parent"
+        android:max="100"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_height="4dp"
+        android:background="@null"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:progressDrawable="@drawable/progressbar"
+        style="@android:style/Widget.ProgressBar.Horizontal"  />
+
+</LinearLayout>

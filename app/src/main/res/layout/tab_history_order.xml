@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.extendservice.activity.MainActivity">
+
+    <include layout="@layout/toolbar_cur" />
+
+    <Button
+        android:onClick="changeColor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@color/base_background_tab_pressed"
+        android:text="点击改变statusbar颜色" />
+
+    <Button
+        android:onClick="showDialog"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@color/base_background_tab_pressed"
+        android:text="dialog开启" />
+
+    <Button
+        android:onClick="login"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@color/base_background_tab_pressed"
+        android:text="登录" />
+    <Button
+        android:onClick="test"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@color/base_background_tab_pressed"
+        android:text="测试" />
+
+
+
+
+
+</LinearLayout>
