@@ -1,0 +1,53 @@
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_height_size"
+    android:background="@color/title_bar_bg"
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    app:theme="@style/AppTheme.AppBarOverlay"
+    app:navigationIcon="@drawable/base_back"
+    >
+    <!--app:navigationIcon="@drawable/selector_back"-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="18sp"
+        android:text="标题"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:id="@+id/toolbar_title"
+        android:transitionName="@string/sample_blue_title"
+        />
+    <TextView
+        android:id="@+id/toolbar_choose"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="编辑"
+        android:scaleType="centerInside"
+        android:layout_gravity="end"
+        android:textColor="@color/white"
+        android:background="@drawable/item_bg_selector_transparent"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        />
+    <ImageView
+        android:id="@+id/toolbar_image"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/icon_search_64"
+        android:scaleType="centerInside"
+        android:layout_gravity="end"
+        android:padding="10dp"
+        android:background="@drawable/item_bg_selector_transparent"
+        />
+
+
+</android.support.v7.widget.Toolbar>
+    <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+    <!--app:popupTheme="@style/AppTheme.PopupOverlay"-->
+
+    <!--android:theme="@style/AppTheme.AppBarOverlay"-->
+    <!--app:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->

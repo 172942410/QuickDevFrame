@@ -1,6 +1,7 @@
 package com.perry.http.manager;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.perry.http.Listener.LoadingDialogImpl;
 import com.perry.http.Listener.LoadingInterface;
@@ -14,6 +15,7 @@ public class RequestManager {
     private static RequestManager ourInstance = new RequestManager();
 
     private Activity activity;
+    private Context context;
     public static RequestManager getInstance(Activity activity) {
         if(activity != null){
             if(ourInstance.activity == null){
@@ -22,6 +24,18 @@ public class RequestManager {
                 parser.parse(activity);
             }
             ourInstance.activity = activity;
+        }
+        return ourInstance;
+    }
+
+    public static RequestManager getInstance(Context context) {
+        if(context != null){
+            if(ourInstance.activity == null){
+                //第一次解析url地址
+                ConfigXmlParser parser = new ConfigXmlParser();
+                parser.parse(context);
+            }
+            ourInstance.context = context;
         }
         return ourInstance;
     }
@@ -41,11 +55,21 @@ public class RequestManager {
         parser.parse(activity,xmlName);
     }
     public void sendRequest(Request request) {
-        HttpClientProxy proxy = new HttpClientProxy(request.url(), activity);
-        proxy.request(request.method(), request.getParameter(), request.getFileParameter(), request.getResponse().getCls(), request.getResponse().getCallback(), null);
+        HttpClientProxy proxy = null;
+        if(activity != null) {
+             proxy = new HttpClientProxy(request.url(), activity);
+        }else if(context != null){
+            proxy = new HttpClientProxy(request.url(), context);
+        }
+        if(proxy != null) {
+            proxy.request(request.method(), request.getParameter(), request.getFileParameter(), request.getResponse().getCls(), request.getResponse().getCallback(), null);
+        }
     }
 
-    public void sendRequest(Request request, String showText ) {
+    public void sendRequest(Request request, Activity activity,String showText ) {
+        if(activity == null){
+            activity = this.activity;
+        }
         HttpClientProxy proxy = new HttpClientProxy(request.url(), activity);
         proxy.request(request.method(), request.getParameter(), request.getFileParameter(), request.getResponse().getCls(), request.getResponse().getCallback(), new LoadingDialogImpl(activity,showText));
 

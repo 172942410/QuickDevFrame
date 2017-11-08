@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.perry.R;
 import com.perry.activity.BaseCompatActivity;
+import com.perry.animator.AnimatorUtils;
 import com.perry.tabpage.indicator.FragmentAdapter;
 
 import java.util.List;
@@ -21,13 +22,13 @@ public abstract class TabNavActivity extends BaseCompatActivity {
 //    private String[] tabArray;//
 //    private PowerManager.WakeLock wl;
     private FragmentAdapter adapter;
+    private boolean isIndicatorHide;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_tab);//在此调用会顶到statubar上；造成标题重叠问题
         setSwipeBackEnable(false);//设置主页不可以滑动返回；
-        initViews();
     }
 
     @Override
@@ -42,15 +43,6 @@ public abstract class TabNavActivity extends BaseCompatActivity {
 
     @Override
     public void initView() {
-//        tvTitle.setText("司信");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    private void initViews() {
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
         //设置viewpager预加载页面
         mIndicator = (IconTabPageIndicator) findViewById(R.id.indicator);
@@ -61,7 +53,50 @@ public abstract class TabNavActivity extends BaseCompatActivity {
         mIndicator.setViewPager(mViewPager);
         mIndicator.setCurrentItemClick(0);
         mIndicator.setOnPageChangeListener(onPageChangeListener);
-//        tabArray = getResources().getStringArray(R.array.tab_array);
+    }
+
+    /**
+     * 切换显示底部指示器的显示
+     * @return true 显示了 ； false 隐藏了
+     */
+    public boolean switchIndicator(){
+        if(mIndicator.isShown()){
+            hideIndicator();
+            return false;
+        }else{
+            showIndicator();
+            return true;
+        }
+    }
+
+    public boolean isIndicatorHide(){
+        return isIndicatorHide;
+    }
+
+    /**
+     * 底部指示器的动画执行高度
+     */
+    private int heightAnim;
+
+    /**
+     * 隐藏底部指示器的动画和结果
+     */
+    public void hideIndicator(){
+        isIndicatorHide = true;
+        heightAnim = AnimatorUtils.closeH(mIndicator);
+    }
+
+    /**
+     * 从底部弹出底部指示器的动画以及结果
+     */
+    public void showIndicator(){
+        isIndicatorHide = false;
+//        AnimatorUtils.openH(mIndicator,heightAnim);
+        AnimatorUtils.openH2(mIndicator,heightAnim);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -85,7 +120,7 @@ public abstract class TabNavActivity extends BaseCompatActivity {
 
         @Override
         public void onPageSelected(int arg0) {
-
+            mIndicator.setCurrentItemClick(arg0);
         }
 
         @Override

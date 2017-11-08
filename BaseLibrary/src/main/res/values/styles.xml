@@ -51,10 +51,13 @@
         <item name="android:windowAnimationStyle">@style/left_right_Animation</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
-
+    <style name="ThemeHome" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowAnimationStyle">@style/left_right_Animation</item>
+    </style>
     <!--此动画配合swipe back 空间需要把主页面的主题设置成不透明；并且其余的子页面的主题都设置成透明才可以避免bug-->
     <style name="left_right_Animation"  >
-        <!--窗口 动画效果-->
+        <!--窗口 动画效果 2017-06-28finish上一个activity时会有反向动画 但高于23版本如果加入悬浮窗权限进入动画必须调用以下两行；不然没有进入动画的效果-->
+        <!--2017-06-29 今天发现在乐视pro3 上返回动画最后会闪一下，特别恶心；适配好难啊；所以需要再次注释掉-->
         <!--<item name="android:windowEnterAnimation">@anim/push_left_in</item>-->
         <!--<item name="android:windowExitAnimation">@anim/out_left_out</item>-->
         <!--activity动画效果-->

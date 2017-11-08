@@ -76,6 +76,7 @@ import com.perry.R;
 
     public void setText(CharSequence text) {
         mTextView.setText(text);
+        mTextViewSelected.setText(text);
     }
 
     public void setIcon(int resId) {

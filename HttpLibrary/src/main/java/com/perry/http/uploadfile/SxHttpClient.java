@@ -1,7 +1,9 @@
 package com.perry.http.uploadfile;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -25,6 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class SxHttpClient {
 
 
+    private static final String TAG = "SxHttpClient";
     private static ExecutorService exec = new ThreadPoolExecutor(0, 5, 3, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
     private ProgressListener progressListener;
@@ -129,17 +132,21 @@ public class SxHttpClient {
                     + "\"; filename=\"" + file.getName() + "\"" + "\r\n");
             sb.append("Content-Type:application/octet-stream\r\n\r\n");
 //            sb.append("\r\n");
-
+//            Log.e(TAG,"sb:"+sb.toString());
             byte[] headerInfo = sb.toString().getBytes("UTF-8");
             byte[] endInfo = ("\r\n--" + BOUNDARY + "--\r\n").getBytes("UTF-8");
             URL url = new URL(strUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type",
-                    "multipart/form-data; boundary=" + BOUNDARY);
-            conn.setRequestProperty("Content-Length", String
-                    .valueOf(headerInfo.length + fileLen
-                            + endInfo.length));
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+            long length = headerInfo.length + fileLen + endInfo.length;
+            conn.setRequestProperty("Content-Length",String.valueOf(length) );
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                conn.setChunkedStreamingMode(1024*1024*10);//这两行不能一起使用
+//                conn.setFixedLengthStreamingMode(length);
+            }else{
+                conn.setChunkedStreamingMode(1024*1024*10);
+            }
             conn.setDoOutput(true);
             conn.setDoInput(true);
 
@@ -173,7 +180,13 @@ public class SxHttpClient {
             out.write(endInfo);
             in.close();
             out.close();
+            int code = conn.getResponseCode();
+            Log.e(TAG,"code:"+code);
+            if ( code!= 200){
 
+            }else{
+
+            }
             BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
             String line, content = "";

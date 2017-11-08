@@ -1,6 +1,7 @@
 package com.perry.http.proxy;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 
@@ -17,6 +18,8 @@ import java.util.Map;
  * Created by isoftstone on 16/3/11.
  */
 public class SxClient extends AbsClient {
+
+    private static final String TAG = "SxClient";
 
     public SxClient(Context context, String url) {
         super(context, url);
@@ -41,6 +44,8 @@ public class SxClient extends AbsClient {
                 if (li != null) {
                     li.finish();
                 }
+                Log.e(TAG,"上传完毕后服务器返回的数据："+json);
+                callback.callbackString(json);
                 T t = mGson.fromJson(json, cls);
                 callback.callback(t);
 

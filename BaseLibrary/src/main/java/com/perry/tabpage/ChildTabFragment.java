@@ -9,8 +9,9 @@ import android.support.v4.app.Fragment;
  * FIXME
  */
 public class ChildTabFragment extends Fragment {
+    private static final String TAG = "ChildTabFragment";
     private String title;
-    private int iconId;
+//    private int iconId;
     private int num;
     TabView mTabView;
 
@@ -26,11 +27,12 @@ public class ChildTabFragment extends Fragment {
     }
 
     public int getIconId() {
-        return iconId;
+        return iconIdNormal;
     }
 
     public void setIconId(int iconId) {
-        this.iconId = iconId;
+        this.iconIdNormal = iconId;
+        this.iconIdSelected = iconId;
     }
     /**
      * 满足渐变效果

@@ -2,6 +2,7 @@
 package com.perry.http.parser;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.Log;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -119,7 +120,12 @@ public class ConfigXmlParser {
 //            prefs.set(name, value);
 //        }
         else if (strNode.equals("header")) {
-            urlHeader = xml.getAttributeValue(null, "url");
+            if(TextUtils.isEmpty(urlHeader)) {
+                urlHeader = xml.getAttributeValue(null, "url");
+                Log.e(TAG,",新解析的 urlHeader："+urlHeader);
+            }else{
+                Log.e(TAG,",已经存在的 urlHeader："+urlHeader);
+            }
             if (urlHeader != null) {
 //                setStartUrl(src);
             }
@@ -142,6 +148,14 @@ public class ConfigXmlParser {
     public static String getUrlHeader(){
 
         return urlHeader;
+    }
+
+    /**
+     * 在 applicatioin 中赋值调用了
+     * @param hostUrl
+     */
+    public static void setUrlHeader(String hostUrl){
+        urlHeader = hostUrl;
     }
 //    private void setStartUrl(String src) {
 //        Pattern schemeRegex = Pattern.compile("^[a-z-]+://");
