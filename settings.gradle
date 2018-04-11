@@ -1,2 +1,3 @@
 include ':app', ':BaseLibrary', ':HttpLibrary'
+include ':Lib-Cordova5.3'
 include ':Test'
