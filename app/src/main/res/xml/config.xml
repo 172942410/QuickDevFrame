@@ -77,7 +77,9 @@
     <feature name="ActionLogPlugin">
         <param name="android-package" value="com.wifi12306.plugins.ActionLogPlugin" />
     </feature>
-
+    <feature name="StoragePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.StoragePlugin" />
+    </feature>
 <!--白名单列表插件 cordova 5.0之后安全要求必须使用此插件做请求网络 必须写 onload 参数为 true 预加载白名单,不然cordova无法做网络请求-->
     <feature name="WhitelistPlugin">
         <param name="android-package" value="org.apache.cordova.WhitelistPlugin" />

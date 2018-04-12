@@ -77,7 +77,7 @@ public class SXNetworkPlugin extends BasePlugin {
         cordovaContest = new CordovaContest();
         cordovaResCode = new CordovaResCode();
         if (PluginUntil.getList().contains(action)) {
-            if (action.equals(PluginUntil.downLoadApp)) {//下载 app
+            if (action.equals(PluginUntil.downLoadApp)) { //下载 app
                 for (int i = 0; i < args.length(); i++) {
                     JSONObject jsob = args.getJSONObject(i);
                     String url = jsob.optString("turnUrl");
@@ -339,10 +339,6 @@ public class SXNetworkPlugin extends BasePlugin {
                     sendPluginError(activity, callbackContext, cordovaResCode.toString());
                 }
 
-            }
-            else if(action.equals(PluginUntil.popMonthCard)){
-
-                return true;
             }
 
 

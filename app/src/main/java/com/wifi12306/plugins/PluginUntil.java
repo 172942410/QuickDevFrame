@@ -77,8 +77,6 @@ public class PluginUntil {
     public static String downLoadApp = "downLoadApp";
     public static String connectWIFI = "connectWIFI";
     public static String getPermission = "getPermission";
-    public static String myPay = "myPay";
-    public static String popMonthCard = "popMonthCard";
     public static String writeActionLog = "writeActionLog";
 
     public static String showLogin = "showLogin";
@@ -156,8 +154,6 @@ public class PluginUntil {
         list.add(downLoadApp);
         list.add(connectWIFI);
         list.add(getPermission);
-        list.add(myPay);
-        list.add(popMonthCard);
         list.add(writeActionLog);
         list.add(showLogin);
     }

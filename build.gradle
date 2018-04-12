@@ -3,6 +3,13 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            credentials {
+                username "mvn_read_ws"
+                password "mrk8929"
+            }
+            url "http://mvn.cloud.alipay.com/nexus/content/repositories/releases/"
+        }
     }
     dependencies {
 //        classpath 'com.android.tools.build:gradle:3.0.0-beta2'
@@ -17,6 +24,13 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        maven {
+            credentials {
+                username "mvn_read_ws"
+                password "mrk8929"
+            }
+            url "http://mvn.cloud.alipay.com/nexus/content/repositories/releases/"
+        }
     }
 }
 

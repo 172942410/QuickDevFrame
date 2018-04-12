@@ -193,16 +193,16 @@
         <button class="btn btn_primary" id="getDeviceInfo">getDeviceInfo</button>
 
         <h3 id="menu-localStorage">数据缓存接口</h3>
-        <span class="desc">使用司信客户端缓存数据接口</span>
-        <button class="btn btn_primary" id="backupData">backupData(数据)</button>
+        <span class="desc">使用客户端缓存数据接口</span>
+        <button class="btn btn_primary" onclick="jsapi_params('StoragePlugin', 'backupData',[{key:'testKey',value:'value123',storageName:'perry'}])" id="backupData">backupData(数据)</button>
         <button class="btn btn_primary" id="backupData-image">backupData(图片)</button>
-        <span class="desc">使用司信客户端读取缓存接口</span>
-        <button class="btn btn_primary" id="restoreData">restoreData(数据)</button>
+        <span class="desc">使用客户端读取缓存接口</span>
+        <button class="btn btn_primary" onclick="jsapi_params('StoragePlugin', 'restoreData',[{key:'testKey',storageName:'perry'}])" id="restoreData">restoreData(数据)</button>
         <button class="btn btn_primary" id="restoreData-image">restoreData(图片)</button>
-        <span class="desc">移除司信客户端缓存数据接口</span>
-        <button class="btn btn_primary" id="removeData">removeData(数据)</button>
-        <span class="desc">移除当前应用在司信客户端所有缓存数据接口</span>
-        <button class="btn btn_primary" id="removeAllData">removeAllData</button>
+        <span class="desc">移除客户端缓存数据接口</span>
+        <button class="btn btn_primary" onclick="jsapi_params('StoragePlugin', 'removeData',[{key:'testKey',storageName:'perry'}])" id="removeData">removeData(数据)</button>
+        <span class="desc">移除当前应用在客户端所有缓存数据接口</span>
+        <button class="btn btn_primary" onclick="jsapi_params('StoragePlugin', 'removeAllData',[{storageName:'perry'}])" id="removeAllData">removeAllData</button>
         <div class="cacheImage"></div>
 
 
@@ -221,7 +221,7 @@
    		 }
 
     function onSuccessUserInfo(data) {
-   		 alert('调用成功:'+data);
+   		 alert('调用成功:'+data.toString());
    		 }
 
             function jsapi_call(pluginName, apiName) {

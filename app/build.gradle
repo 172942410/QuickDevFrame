@@ -38,4 +38,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile project(':BaseLibrary')
     compile project(path: ':Lib-Cordova5.3')
+    //统一存储
+//    provided "com.alipay.android.phone.mobilesdk:storage-build:1.7.0.170609123631:api@jar"
+    compile "com.alipay.android.phone.mobilesdk:storage-build:1.7.0.170609123631:api@jar"
+
 }
