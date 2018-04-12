@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.perry.activity.BaseCompatActivity;
 import com.perry.http.utils.NetUtil;
 import com.wifi12306.R;
+import com.wifi12306.plugins.PluginUntil;
 
 import org.apache.cordova.ConfigXmlParser;
 import org.apache.cordova.CordovaInterfaceImpl;
@@ -233,7 +234,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         getWindow().setFlags(//强制打开GPU渲染
             WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
             WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-//        PluginUntil.addPlugin();
+        PluginUntil.addPlugin();
         ConfigXmlParser parser = new ConfigXmlParser();
         parser.parse(this);
         preferences = parser.getPreferences();
