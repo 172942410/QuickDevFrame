@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>司信JS-SDK Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <script type="text/javascript" src="../common/js/jsixin.js"></script>
+    <!--<script type="text/javascript" src="http://jssdk.issmobile.com/JS-SDK/jsixin/jsixin.js"></script>-->
+    <!--<script type="text/javascript" src="http://http.isssixin.com:6060/JS-SDK/beta/jsixin/jsixin.js"></script>-->
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body ontouchstart="" >
+<div class="sxapi_container">
+    <div class="sxapi_index_container">
+        <ul class="label_box lbox_close sxapi_index_list">
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-basic">基础接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-network">网络请求接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-share">分享接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-image">图像接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-audio">音频接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-location">地理位置接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-shake">摇一摇接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-scan">二维码接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-interfaceOperation">界面操作接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-institution">机构号接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-userinfo">用户信息接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-device">设备信息接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-localStorage">数据缓存接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-additions">附加接口</a></li>
+            <li class="label_item sxapi_index_item"><a class="label_inner" href="#menu-link">链接跳转测试</a></li>
+        </ul>
+    </div>
+    <div class="lbox_close sxapi_form">
+        <h3 id="menu-basic">基础接口</h3>
+        <span class="desc">判断当前客户端是否支持指定插件api接口</span>
+        <button class="btn btn_primary" id="checkPluginApi">checkPluginApi</button>
+        <span class="desc">开启调试模式接口</span>
+        <button class="btn btn_primary" id="onDebug">onDebug</button>
+        <span class="desc">关闭调试模式接口</span>
+        <button class="btn btn_primary" id="closeDebug">closeDebug</button>
+        <span class="desc">获取客户端插件SDK版本号接口</span>
+        <button class="btn btn_primary" id="getPluginSDKVersion">getPluginSDKVersion</button>
+
+        <h3 id="menu-network">网络请求接口</h3>
+        <span class="desc">配置网络请求接口</span>
+        <button class="btn btn_primary" id="configRequest">configRequest</button>
+        <span class="desc">通过司信客户端请求网络接口</span>
+        <button class="btn btn_primary" id="startRequest">startRequest</button>
+        <span class="desc">取消网络请求接口</span>
+        <button class="btn btn_primary" id="cancelRequest">cancelRequest</button>
+
+        <h3 id="menu-share">分享接口</h3>
+        <span class="desc">默认内容分享接口</span>
+        <button class="btn btn_primary" id="share">share</button>
+        <span class="desc">自定义内容分享接口</span>
+        <button class="btn btn_primary" id="shareCustomContent">shareCustomContent</button>
+        <button class="btn btn_primary" id="shareCustomContent-local">shareCustomContent(本地网页)</button>
+        <span class="desc">开启自定义内容分享功能接口</span>
+        <button class="btn btn_primary" id="onMenuShareCustomContent">onMenuShareCustomContent</button>
+        <span class="desc">关闭自定义分享内容接口</span>
+        <button class="btn btn_primary" id="closeMenuShareCustomContent">closeMenuShareCustomContent</button>
+
+        <h3 id="menu-image">图像接口</h3>
+        <div class="originalImage"></div>
+        <div class="compressedImage"></div>
+        <span class="desc">拍照或从手机相册中选图接口</span>
+        <button class="btn btn_primary" id="chooseImage">chooseImage</button>
+        <span class="desc">头像图片选择接口</span>
+        <button class="btn btn_primary" id="chooseAvatarImage">chooseAvatarImage</button>
+        <span class="desc">图片预览接口</span>
+        <button class="btn btn_primary" id="previewImage">previewImage</button>
+        <span class="desc">上传图片接口</span>
+        <button class="btn btn_primary" id="uploadImage">uploadImage</button>
+        <span class="desc">批量上传图片接口</span>
+        <button class="btn btn_primary" id="uploadImages">uploadImages</button>
+        <span class="desc">下载图片接口</span>
+        <button class="btn btn_primary" id="downloadImage">downloadImage</button>
+        <span class="desc">批量下载图片接口</span>
+        <button class="btn btn_primary" id="downloadImages">downloadImages</button>
+
+        <h3 id="menu-audio">音频接口</h3>
+        <span class="desc">开始录音和监听录音自动停止接口</span>
+        <button class="btn btn_primary" id="onRecord">onRecord</button>
+        <span class="desc">停止录音接口</span>
+        <button class="btn btn_primary" id="stopRecord">stopRecord</button>
+        <span class="desc">播放语音和监听语音自动播放完毕接口</span>
+        <button class="btn btn_primary" id="onPlayVoice">onPlayVoice</button>
+        <span class="desc">暂停播放接口</span>
+        <button class="btn btn_primary" id="pauseVoice">pauseVoice</button>
+        <span class="desc">停止播放接口</span>
+        <button class="btn btn_primary" id="stopVoice">stopVoice</button>
+        <span class="desc">上传语音接口</span>
+        <button class="btn btn_primary" id="uploadVoice">uploadVoice</button>
+        <span class="desc">下载语音接口</span>
+        <button class="btn btn_primary" id="downloadVoice">downloadVoice</button>
+
+        <h3 id="menu-location">地理位置接口</h3>
+        <span class="desc">获取地理位置接口</span>
+        <button class="btn btn_primary" id="getLocation">getLocation</button>
+        <span class="desc">使用司信内置地图查看位置接口</span>
+        <button class="btn btn_primary" id="openLocation">openLocation</button>
+
+        <h3 id="menu-shake">摇一摇接口</h3>
+        <span class="desc">开启和监听摇一摇事件接口</span>
+        <button class="btn btn_primary" id="onShake">onShake</button>
+        <span class="desc">关闭摇一摇功能接口</span>
+        <button class="btn btn_primary" id="closeShake">closeShake</button>
+
+        <h3 id="menu-scan">二维码接口</h3>
+        <span class="desc">调起司信扫一扫接口</span>
+        <button class="btn btn_primary" id="scanQRCode">scanQRCode</button>
+        <span class="desc">生成二维码接口</span>
+        <button class="btn btn_primary" id="generateQRCode">generateQRCode</button>
+        <div class="qrCodeImage"></div>
+
+
+        <h3 id="menu-interfaceOperation">界面操作接口</h3>
+        <span class="desc">改变导航条标题接口</span>
+        <button class="btn btn_primary" id="changeNavTitle">changeNavTitle</button>
+        <span class="desc">隐藏右上角菜单接口</span>
+        <button class="btn btn_primary" id="hideOptionMenu">hideOptionMenu</button>
+        <span class="desc">显示右上角菜单接口</span>
+        <button class="btn btn_primary" id="showOptionMenu">showOptionMenu</button>
+        <span class="desc">批量隐藏功能按钮接口</span>
+        <button class="btn btn_primary" id="hideMenuItems">hideMenuItems</button>
+        <span class="desc">批量显示功能按钮接口</span>
+        <button class="btn btn_primary" id="showMenuItems">showMenuItems</button>
+        <span class="desc">显示所有功能按钮接口</span>
+        <button class="btn btn_primary" id="showAllMenuItems">showAllMenuItems</button>
+        <span class="desc">关闭当前网页窗口接口</span>
+        <button class="btn btn_primary" id="closeWindow">closeWindow</button>
+        <span class="desc">通过司信客户端alert信息接口</span>
+        <button class="btn btn_primary" id="alertMessage">alertMessage</button>
+        <span class="desc">通过司信客户端显示提示信息接口</span>
+        <button class="btn btn_primary" id="showMessage">showMessage</button>
+        <span class="desc">通过司信客户端显示loading接口</span>
+        <button class="btn btn_primary" id="showLoading">showLoading</button>
+        <span class="desc">通过司信客户端隐藏loading接口</span>
+        <button class="btn btn_primary" id="hideLoading">hideLoading</button>
+
+        <h3 id="menu-institution">机构号接口</h3>
+        <span class="desc">判断用户是否关注机构号接口</span>
+        <button class="btn btn_primary" id="checkIfUserFollowInstitution">checkIfUserFollowInstitution</button>
+        <span class="desc">查看机构号接口</span>
+        <button class="btn btn_primary" id="viewInstitutionInfo">viewInstitutionInfo</button>
+        <span class="desc">给机构号发送信息接口</span>
+        <button class="btn btn_primary" id="sendMsgToInstitution">sendMsgToInstitution</button>
+
+        <h3 id="menu-userinfo">用户信息接口</h3>
+        <span class="desc">获取司信当前用户信息接口</span>
+        <button class="btn btn_primary" id="getUserInfo">getUserInfo</button>
+        <span class="desc">获取司信当前用户最近联系人接口</span>
+        <button class="btn btn_primary" id="getUserRecentContacts">getUserRecentContacts</button>
+        <span class="desc">获取员工信息接口</span>
+        <button class="btn btn_primary" id="getEmployeeInfo">getEmployeeInfo</button>
+        <span class="desc">选择联系人接口</span>
+        <button class="btn btn_primary" id="chooseContacts">chooseContacts</button>
+        <span class="desc">选择组织架构接口</span>
+        <button class="btn btn_primary" id="chooseOrganization">chooseOrganization</button>
+        <span class="desc">获取组织架构信息接口</span>
+        <button class="btn btn_primary" id="getOrganizationInfo">getOrganizationInfo</button>
+        <span class="desc">给指定员工发信息接口</span>
+        <button class="btn btn_primary" id="viewEmployeeInfo">viewEmployeeInfo</button>
+        <span class="desc">给指定员工发信息接口</span>
+        <button class="btn btn_primary" id="sendMsgToEmployee">sendMsgToEmployee</button>
+
+        <h3 id="menu-device">设备信息接口</h3>
+        <span class="desc">获取网络状态接口</span>
+        <button class="btn btn_primary" id="getDeviceNetworkType">getDeviceNetworkType</button>
+        <span class="desc">获取系统类型接口</span>
+        <button class="btn btn_primary" id="getDeviceSystemType">getDeviceSystemType</button>
+        <span class="desc">获取系统版本号接口</span>
+        <button class="btn btn_primary" id="getDeviceSystemVersion">getDeviceSystemVersion</button>
+        <span class="desc">获取设备机型接口</span>
+        <button class="btn btn_primary" id="getDeviceModel">getDeviceModel</button>
+        <span class="desc">获取设备唯一标识接口</span>
+        <button class="btn btn_primary" id="getDeviceUniqueID">getDeviceUniqueID</button>
+        <span class="desc">获取设备信息接口</span>
+        <button class="btn btn_primary" id="getDeviceInfo">getDeviceInfo</button>
+
+        <h3 id="menu-localStorage">数据缓存接口</h3>
+        <span class="desc">使用司信客户端缓存数据接口</span>
+        <button class="btn btn_primary" id="backupData">backupData(数据)</button>
+        <button class="btn btn_primary" id="backupData-image">backupData(图片)</button>
+        <span class="desc">使用司信客户端读取缓存接口</span>
+        <button class="btn btn_primary" id="restoreData">restoreData(数据)</button>
+        <button class="btn btn_primary" id="restoreData-image">restoreData(图片)</button>
+        <span class="desc">移除司信客户端缓存数据接口</span>
+        <button class="btn btn_primary" id="removeData">removeData(数据)</button>
+        <span class="desc">移除当前应用在司信客户端所有缓存数据接口</span>
+        <button class="btn btn_primary" id="removeAllData">removeAllData</button>
+        <div class="cacheImage"></div>
+
+
+        <h3 id="menu-additions">附加接口</h3>
+        <span class="desc">获取司信版本号接口</span>
+        <button class="btn btn_primary" id="getAppVersion">getAppVersion</button>
+
+        <h3 id="menu-link">链接跳转测试</h3>
+        <a href="https://www.baidu.com/">https://www.baidu.com/</a>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jssdkdemo.js"></script>
+
+</body></html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+	    <meta http-equiv="Cache-Control" content="max-age=0">
+	    <meta name="apple-touch-fullscreen" content="yes">
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no" />
+	    <meta name="msapplication-tap-highlight" content="no">
+	    <link rel="stylesheet" type="text/css" href="../css/reset.css"/>
+		<title>加载失败</title>
+		<style>
+			.failure{
+				position: fixed;
+				top:50%;
+				z-index: 1000;
+				width: 100%;
+				margin-top: -7rem;
+			}
+			.failure img{
+				display: block;
+				border:0;
+				margin:0 auto 2rem;
+				height:6rem;
+			}
+			.failure p{
+				font-size: 0.96rem;
+				color: #bdbdbd;
+				text-align: center;
+				font-weight: 100;
+			}
+			.failure p span:nth-last-of-type(1){
+				color:#26acf9;
+			}
+
+		</style>
+	</head> 
+	<body>
+		<div class="failure" id = "failure">
+			<img id = "images"/>
+			<p><span id = "inter"></span> 点击<span onclick = "reload()">重试</span></p>
+		</div>
+		<script type="text/javascript" src="../js/jsixin.js" ></script>
+		<script type="text/javascript">
+			if(window.navigator.onLine == false){
+				document.getElementById("images").setAttribute("src","../img/noInternet.png");
+				document.getElementById("inter").innerHTML = "网络未连接";
+			}else{
+				document.getElementById("images").setAttribute("src","../img/failure.png");
+				document.getElementById("inter").innerHTML = "网络加载失败";
+			}
+			function reload(){
+				var h = sessionStorage.getItem("http");
+				if(h){
+					window.location = h;
+				};
+			}
+			function pushHistory() {
+				stateId = {
+					title: "index",
+					url: ""
+				};
+				window.history.pushState(stateId, "index", "");
+			};
+			setTimeout(function() {
+				pushHistory();
+				window.addEventListener("popstate", function (e) {
+					sx.closeWindow({
+					    success: function (res) {
+					    },
+					    fail: function (err) {
+					    }
+					});
+				});
+			 }, 300);
+		</script>
+	</body>
+</html>
