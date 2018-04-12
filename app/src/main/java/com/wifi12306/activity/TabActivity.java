@@ -14,9 +14,9 @@ import com.perry.utils.statusbar.StatusBarUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.wifi12306.activity.CordovaWebViewActivity.dir_assets_h5;
+
 public class TabActivity extends TabNavActivity {
-
-
 
     public void changeColor(View view){
         StatusBarUtil.setColor(this,getResources().getColor(R.color.text_black));
@@ -34,6 +34,12 @@ public class TabActivity extends TabNavActivity {
     public void cordovaButton(View view) {
         Intent intent = new Intent(this,CordovaWebViewActivity.class);
         String url ="https://www.baidu.com";
+        intent.putExtra("url", url);
+        startActivity(intent);
+    }
+    public void cordovaAssetsButton(View view){
+        Intent intent = new Intent(this,CordovaWebViewActivity.class);
+        String url =dir_assets_h5+"jssdk/demo/index.html";
         intent.putExtra("url", url);
         startActivity(intent);
     }

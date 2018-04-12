@@ -14,7 +14,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.wifi12306"
+        applicationId "com.perry.frame"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

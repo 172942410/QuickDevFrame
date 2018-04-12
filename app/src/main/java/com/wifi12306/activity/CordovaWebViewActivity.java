@@ -54,6 +54,9 @@ import java.util.List;
 public class CordovaWebViewActivity extends BaseCompatActivity {
 
     private static final String TAG = "CordovaWebViewActivity";
+    /**assets目录下的文件**/
+    public static String dir_assets_h5 = "file:///android_asset/";
+
     /**
      * 网页载入控件
      **/

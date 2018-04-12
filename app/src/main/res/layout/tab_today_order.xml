@@ -40,7 +40,14 @@
         android:background="@color/base_background_tab_pressed"
         android:text="cordova调用"
         />
-
+    <Button
+        android:onClick="cordovaAssetsButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@color/base_background_tab_pressed"
+        android:text="cordova本地文件调用"
+        />
 
 
 
