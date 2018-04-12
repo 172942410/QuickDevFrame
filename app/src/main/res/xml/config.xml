@@ -83,10 +83,5 @@
         <param name="android-package" value="org.apache.cordova.WhitelistPlugin" />
         <param name="onload" value="true"/>
     </feature>
-    <feature name="MyPayPlugin">
-        <param name="android-package" value="com.wifi12306.plugins.MyPayPlugin" />
-    </feature>
-    <feature name="PopToMonthCardPlugin">
-        <param name="android-package" value="com.wifi12306.plugins.PopToMonthCardPlugin" />
-    </feature>
+
 </widget>
