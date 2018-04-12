@@ -203,6 +203,7 @@ public class UserInfoPlugin extends BasePlugin {
                         }
                     }else {
                     sendPluginError(activity,callbackContext,CordovaUtils.RESCODE_NO_PARAMETER,CordovaUtils.RESMSG_NO_PARAMETER);
+                        return true;
                     }
                 }
             } else if (action.equals(PluginUntil.getUserRecentContacts)) {

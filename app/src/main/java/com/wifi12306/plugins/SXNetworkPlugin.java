@@ -100,7 +100,7 @@ public class SXNetworkPlugin extends BasePlugin {
                     }
                 }
                 return true;
-            } else if (action.equals(PluginUntil.configRequest)) {//配置网络环境
+            } else if (action.equals(PluginUntil.configRequest)) { //配置网络环境
                 boolean Api = getAccessAPIpermissions(activity, callbackContext);
                 if (Api) {
                     cordovaResCode = cordovaContest.initWithDictionaryParameters(args);
@@ -158,6 +158,7 @@ public class SXNetworkPlugin extends BasePlugin {
                         sendPluginError(activity, callbackContext, cordovaResCode.toString());
                     }
                 }
+                return true;
             } else if (action.equals(PluginUntil.startRequest)) {
                 //请求网络接口'''']
                 boolean netWork = CordovaUtils.isNetworkAvailable(activity);
@@ -314,6 +315,7 @@ public class SXNetworkPlugin extends BasePlugin {
                         sendPluginError(activity, callbackContext, cordovaResCode.toString());
                     }
                 }
+                return true;
             }
             //20180128
             else if (action.equals(PluginUntil.getPermission)) {
@@ -338,9 +340,8 @@ public class SXNetworkPlugin extends BasePlugin {
                     cordovaResCode = cordovaContest.setResultWithErrResultType(1, "getPermission");
                     sendPluginError(activity, callbackContext, cordovaResCode.toString());
                 }
-
+                return true;
             }
-
 
         } else {
             cordovaResCode = cordovaContest.setResultWithErrResultType(2, action);
