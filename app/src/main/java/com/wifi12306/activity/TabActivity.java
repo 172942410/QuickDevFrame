@@ -31,6 +31,12 @@ public class TabActivity extends TabNavActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
+    public void cordovaButton(View view) {
+        Intent intent = new Intent(this,CordovaWebViewActivity.class);
+        String url ="https://www.baidu.com";
+        intent.putExtra("url", url);
+        startActivity(intent);
+    }
     public void test(View view ){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

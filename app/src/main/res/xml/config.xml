@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.sixin.cordova" version="0.0.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.w3.org/ns/widgets ">
+    <preference name="loglevel" value="DEBUG" />
+    <name>CordovaDemo</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!--以下是 网络地址调用本地插件需要添加的权限-->
+    <!--<allow-navigation href="*" />-->
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+
+    <feature name="BasePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.BasePlugin" />
+    </feature>
+
+    <feature name="AdditionsPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.AdditionsPlugin" />
+    </feature>
+
+    <feature name="ConfigPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.ConfigPlugin" />
+    </feature>
+
+    <feature name="DevicePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.DevicePlugin" />
+    </feature>
+
+    <feature name="ImagePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.ImagePlugin" />
+    </feature>
+
+    <feature name="QRCodePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.QRCodePlugin" />
+    </feature>
+
+    <feature name="ShakePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.ShakePlugin" />
+    </feature>
+
+    <feature name="WxPayPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.SharePlugin" />
+    </feature>
+
+    <feature name="SharePlugin">
+        <param name="android-package" value="com.wifi12306.plugins.SharePlugin" />
+    </feature>
+
+    <feature name="UserInfoPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.UserInfoPlugin" />
+    </feature>
+
+    <feature name="PayPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.PayPlugin" />
+    </feature>
+    <feature name="SXNetworkPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.SXNetworkPlugin" />
+    </feature>
+    <feature name="SXInterfaceOperationPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.SXInterfaceOperationPlugin" />
+    </feature>
+    <feature name="ActionLogPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.ActionLogPlugin" />
+    </feature>
+
+<!--白名单列表插件 cordova 5.0之后安全要求必须使用此插件做请求网络 必须写 onload 参数为 true 预加载白名单,不然cordova无法做网络请求-->
+    <feature name="WhitelistPlugin">
+        <param name="android-package" value="org.apache.cordova.WhitelistPlugin" />
+        <param name="onload" value="true"/>
+    </feature>
+    <feature name="MyPayPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.MyPayPlugin" />
+    </feature>
+    <feature name="PopToMonthCardPlugin">
+        <param name="android-package" value="com.wifi12306.plugins.PopToMonthCardPlugin" />
+    </feature>
+</widget>

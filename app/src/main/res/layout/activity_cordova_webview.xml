@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/web_bg"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:fitsSystemWindows="true"
+	>
+
+	<org.apache.cordova.engine.SystemWebView
+		android:id="@+id/webview_ipsa"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		/>
+
+	<ProgressBar
+		android:layout_alignTop="@id/webview_ipsa"
+		android:id="@+id/progressbar_top"
+		style="?android:attr/progressBarStyleHorizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="5dp"
+		android:max="100"
+		android:progress="0"
+		android:progressDrawable="@drawable/progressbar"
+		android:secondaryProgress="100"
+		/>
+
+	<LinearLayout
+		android:id="@+id/ll_loading"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:paddingBottom="15dp"
+		android:layout_centerInParent="true">
+
+		<ImageView
+			android:id="@+id/iv_loading"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:scaleType="centerInside"
+			android:background="@drawable/progressbar"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="加载中请稍后..."/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/ll_loading_fail"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:gravity="center"
+		android:paddingBottom="15dp"
+		android:background="@android:color/transparent"
+		>
+
+		<ImageView
+			android:id="@+id/iv_loading_error"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:scaleType="centerInside"
+			android:src="@drawable/load_failed"/>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:orientation="horizontal"
+			android:layout_height="wrap_content"
+			android:gravity="center">
+
+			<TextView
+				android:id="@+id/tv_detial"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="网络加载失败 点击"/>
+
+			<TextView
+				android:id="@+id/tv_refresh"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="重试"
+				android:textColor="@color/blue_base"/>
+		</LinearLayout>
+	</LinearLayout>
+
+</RelativeLayout>
