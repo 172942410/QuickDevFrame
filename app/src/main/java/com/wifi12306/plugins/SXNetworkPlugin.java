@@ -66,7 +66,6 @@ import java.util.Map;
  */
 public class SXNetworkPlugin extends BasePlugin {
 
-    private CallbackContext callbackContext;
     private CordovaContest cordovaContest;
     private CordovaResCode cordovaResCode;
     private Activity activity;
@@ -74,7 +73,6 @@ public class SXNetworkPlugin extends BasePlugin {
 
     @Override
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
-        this.callbackContext = callbackContext;
         activity = this.cordova.getActivity();
         cordovaContest = new CordovaContest();
         cordovaResCode = new CordovaResCode();
@@ -164,8 +162,6 @@ public class SXNetworkPlugin extends BasePlugin {
                 //请求网络接口'''']
                 boolean netWork = CordovaUtils.isNetworkAvailable(activity);
                 if (netWork) {
-                    boolean Api = getAccessAPIpermissions(activity, callbackContext);
-//                    if(Api){
                     cordovaResCode = cordovaContest.initWithDictionaryParameters(args);
                     Map<String, String> params = new HashMap();
                     if (cordovaResCode.isOK) {

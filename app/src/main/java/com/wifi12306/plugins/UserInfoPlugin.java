@@ -201,18 +201,6 @@ public class UserInfoPlugin extends BasePlugin {
                             }else {
                             }
                         }
-//                    }else {
-//                        if (null != SharedPreferencesUtil.getInstance(activity.getApplicationContext()).getUserId()) {
-//                            DetailDataBean myDetailBean = DBUtil.getDetailData(activity.getApplicationContext(), SharedPreferencesUtil.getInstance(activity.getApplicationContext()).getUserId());
-//                            SXGetUserInfoBean sxGetUserInfoBean = new SXGetUserInfoBean();
-//                            sxGetUserInfoBean.userId = myDetailBean.id;
-//                            sxGetUserInfoBean.headImgUrl = myDetailBean.smallImageUrl;
-//                            sxGetUserInfoBean.name = myDetailBean.username;
-//                            sendPluginSucces(activity,callbackContext,sxGetUserInfoBean.toString());
-//                        }
-//                        sendPluginError(activity,callbackContext,cordovaResCode.toString());
-//                        return true;
-//                    }
                     }else {
                     sendPluginError(activity,callbackContext,CordovaUtils.RESCODE_NO_PARAMETER,CordovaUtils.RESMSG_NO_PARAMETER);
                     }

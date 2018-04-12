@@ -52,13 +52,13 @@ public class VolleyClient extends AbsClient {
 
             @Override
             public void onResponse(String s) {
+                callback.callbackString(s);
                 try {
 //                        //服务器未转码， 这里需转码
 //                        s = new String(s.getBytes("iso8859-1"), "UTF-8");
 //                    Log.e(TAG,"read json: " + s);
                     LogUtil.e(TAG,"read json:"+s);
                     T t = mGson.fromJson(s, cls);
-                    callback.callbackString(s);
                     callback.callback(t);
                 } catch (Exception e) {
 //                    callback.onError(new Exception(e.toString()));

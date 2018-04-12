@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>司信JS-SDK Demo</title>
+    <title>JS-SDK Demo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <script type="text/javascript" src="../common/js/jsixin.js"></script>
+    <!--<script type="text/javascript" src="../common/js/jsixin.js"></script>-->
+    <!--<script type="text/javascript" src="../debug/jsixin-debug-1.0.0.js"></script>-->
+    <!--<script type="text/javascript" src="js/sx.js"></script>-->
+    <script type="text/javascript">
+		function load() {
+		    document.addEventListener("deviceready", onDeviceReady, false) //添加deviceready事件是为了调用cordova
+		}
+		function onDeviceReady(){
+            //之后运行代码要调用cordova的必须在这个函数里调用
+		}
+	</script>
+
+    <script type="text/javascript" src="../cordova/cordova.js"></script>
+
     <!--<script type="text/javascript" src="http://jssdk.issmobile.com/JS-SDK/jsixin/jsixin.js"></script>-->
     <!--<script type="text/javascript" src="http://http.isssixin.com:6060/JS-SDK/beta/jsixin/jsixin.js"></script>-->
 
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body ontouchstart="" >
+<body ontouchstart="" onload="load()">
 <div class="sxapi_container">
     <div class="sxapi_index_container">
         <ul class="label_box lbox_close sxapi_index_list">
@@ -43,11 +56,11 @@
 
         <h3 id="menu-network">网络请求接口</h3>
         <span class="desc">配置网络请求接口</span>
-        <button class="btn btn_primary" id="configRequest">configRequest</button>
+        <button class="btn btn_primary" onclick="jsapi_call('SXNetworkPlugin', 'configRequest')" id="configRequest">configRequest</button>
         <span class="desc">通过司信客户端请求网络接口</span>
-        <button class="btn btn_primary" id="startRequest">startRequest</button>
+        <button class="btn btn_primary" onclick="jsapi_params('SXNetworkPlugin', 'startRequest',[{url:'http://www.baidu.com'}])" id="startRequest">startRequest</button>
         <span class="desc">取消网络请求接口</span>
-        <button class="btn btn_primary" id="cancelRequest">cancelRequest</button>
+        <button class="btn btn_primary" onclick="jsapi_call('SXNetworkPlugin', 'cancelRequest')" id="cancelRequest">cancelRequest</button>
 
         <h3 id="menu-share">分享接口</h3>
         <span class="desc">默认内容分享接口</span>
@@ -148,7 +161,8 @@
 
         <h3 id="menu-userinfo">用户信息接口</h3>
         <span class="desc">获取司信当前用户信息接口</span>
-        <button class="btn btn_primary" id="getUserInfo">getUserInfo</button>
+        <!--<button class="btn btn_primary" id="getUserInfo">getUserInfo</button>-->
+        <button class="btn btn_primary" onclick="jsapi_call('UserInfoPlugin', 'getUserInfo')">getUserInfo</button>
         <span class="desc">获取司信当前用户最近联系人接口</span>
         <button class="btn btn_primary" id="getUserRecentContacts">getUserRecentContacts</button>
         <span class="desc">获取员工信息接口</span>
@@ -201,7 +215,21 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    function onFail(message) {
+        	alert('失败信息:' + message);
+   		 }
 
-<script type="text/javascript" src="js/jssdkdemo.js"></script>
+    function onSuccessUserInfo(data) {
+   		 alert('调用成功:'+data);
+   		 }
 
+            function jsapi_call(pluginName, apiName) {
+                cordova.exec(onSuccessUserInfo, onFail, pluginName, apiName, ['']);
+                }
+     function jsapi_params(pluginName, apiName,params) {
+                cordova.exec(onSuccessUserInfo, onFail, pluginName, apiName, params);
+                }
+</script>
+<!--<script type="text/javascript" src="js/jssdkdemo.js"></script>-->
 </body></html>

@@ -21,7 +21,7 @@ import java.util.Map;
  * Created by issuser on 16/6/1.
  */
 public class BasePlugin extends CordovaPlugin {
-    private static final String TAG = "SXPlugin";
+    private static final String TAG = "BasePlugin";
     private CordovaContest cordovaContest = new CordovaContest();
     private static CordovaResCode cordovaResCode = new CordovaResCode();
 
