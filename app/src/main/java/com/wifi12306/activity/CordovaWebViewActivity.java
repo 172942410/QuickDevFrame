@@ -283,6 +283,21 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         @JavascriptInterface
         public void showSource(String html) {
             Log.e(TAG,"InJavaScriptLocalObj showSource HTML:"+ html);
+            // 拿到网页源代码再去截取 文章正文
+//            final String replaceHtml = html.replace("", "");
+            final String replaceHtml = html;
+            if("<head></head><body></body>".equals(replaceHtml) || replaceHtml.length()<30){
+
+            }else {
+                webView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.removeJavascriptInterface("local_obj");
+                        webView.clearHistory();
+                        webView.loadData(replaceHtml, "text/html; charset=UTF-8", null);//这种写法可以正确解码
+                    }
+                });
+            }
         }
     }
     @Override
@@ -499,8 +514,9 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
                 return;
             }
             //显示加载的url的html
+            view.loadUrl("javascript:window.local_obj.showSource(document.getElementsByTagName('html')[0].innerHTML);");
 //            view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
-            view.loadUrl("javascript:window.local_obj.showSource('<body>'+document.getElementsByTagName('html')[0].innerHTML+'</body>');");
+//            view.loadUrl("javascript:window.local_obj.showSource('<body>'+document.getElementsByTagName('html')[0].innerHTML+'</body>');");
 //				if(webView.canGoForward() && SiXinApplication.jumpUSer){
 //					webView.goForward();
 //					SiXinApplication.jumpUSer = false;
