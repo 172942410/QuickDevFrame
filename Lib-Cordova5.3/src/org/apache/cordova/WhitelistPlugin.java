@@ -19,13 +19,9 @@
 
 package org.apache.cordova;
 
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.ConfigXmlParser;
-import org.apache.cordova.Whitelist;
-import org.xmlpull.v1.XmlPullParser;
-
 import android.content.Context;
-import android.util.Log;
+
+import org.xmlpull.v1.XmlPullParser;
 
 public class WhitelistPlugin extends CordovaPlugin {
     private static final String LOG_TAG = "WhitelistPlugin";
@@ -90,7 +86,7 @@ public class WhitelistPlugin extends CordovaPlugin {
                 boolean external = (xml.getAttributeValue(null, "launch-external") != null);
                 if (origin != null) {
                     if (external) {
-                        Log.w(LOG_TAG, "Found <access launch-external> within config.xml. Please use <allow-intent> instead.");
+                        LOG.w(LOG_TAG, "Found <access launch-external> within config.xml. Please use <allow-intent> instead.");
                         allowedIntents.addWhiteListEntry(origin, (subdomains != null) && (subdomains.compareToIgnoreCase("true") == 0));
                     } else {
                         if ("*".equals(origin)) {

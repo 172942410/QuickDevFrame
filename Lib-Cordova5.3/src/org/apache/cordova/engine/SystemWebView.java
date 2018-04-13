@@ -83,8 +83,7 @@ public class SystemWebView extends WebView implements CordovaWebViewEngine.Engin
         Boolean ret = parentEngine.client.onDispatchKeyEvent(event);
         // 返回 true 是处理按键事件,不返还给上层处理;返回 false 则返回给上层处理; 在cordAndroid插件中有赋值
         if (ret != null) {
-//            return ret.booleanValue();
-            return false;
+            return ret.booleanValue();
         }
         return super.dispatchKeyEvent(event);
     }

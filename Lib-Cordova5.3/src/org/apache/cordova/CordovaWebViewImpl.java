@@ -18,10 +18,10 @@
 */
 package org.apache.cordova;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -92,6 +92,7 @@ public class CordovaWebViewImpl implements CordovaWebView {
         init(cordova, new ArrayList<PluginEntry>(), new CordovaPreferences());
     }
 
+    @SuppressLint("Assert")
     @Override
     public void init(CordovaInterface cordova, List<PluginEntry> pluginEntries, CordovaPreferences preferences) {
         if (this.cordova != null) {
@@ -245,7 +246,7 @@ public class CordovaWebViewImpl implements CordovaWebView {
     @Deprecated
     public void showCustomView(View view, WebChromeClient.CustomViewCallback callback) {
         // This code is adapted from the original Android Browser code, licensed under the Apache License, Version 2.0
-        Log.d(TAG, "showing Custom View");
+        LOG.d(TAG, "showing Custom View");
         // if a view already exists then immediately terminate the new one
         if (mCustomView != null) {
             callback.onCustomViewHidden();
@@ -276,7 +277,7 @@ public class CordovaWebViewImpl implements CordovaWebView {
     public void hideCustomView() {
         // This code is adapted from the original Android Browser code, licensed under the Apache License, Version 2.0
         if (mCustomView == null) return;
-        Log.d(TAG, "Hiding Custom View");
+        LOG.d(TAG, "Hiding Custom View");
 
         // Hide the custom view.
         mCustomView.setVisibility(View.GONE);
@@ -349,30 +350,6 @@ public class CordovaWebViewImpl implements CordovaWebView {
         appPlugin.fireJavascriptEvent(event);
     }
 
-//    @Override
-//    public void setButtonPlumbedToJs(int keyCode, boolean override) {
-//        switch (keyCode) {
-//            case KeyEvent.KEYCODE_VOLUME_DOWN:
-//            case KeyEvent.KEYCODE_VOLUME_UP:
-//            case KeyEvent.KEYCODE_BACK:
-//            case KeyEvent.KEYCODE_MENU:
-//                // TODO: Why are search and menu buttons handled separately?
-//                if (override) {
-//                    boundKeyCodes.add(keyCode);
-//                } else {
-//                    boundKeyCodes.remove(keyCode);
-//                }
-//                return;
-//            default:
-//                throw new IllegalArgumentException("Unsupported keycode: " + keyCode);
-//        }
-//    }
-
-    /**
-     * 修改cordova监听menu键
-     * @param keyCode
-     * @return
-     */
     @Override
     public void setButtonPlumbedToJs(int keyCode, boolean override) {
         switch (keyCode) {
@@ -574,56 +551,9 @@ public class CordovaWebViewImpl implements CordovaWebView {
             }
         }
 
-//        @Override
-//        public Boolean onDispatchKeyEvent(KeyEvent event) {
-//            int keyCode = event.getKeyCode();
-//            boolean isBackButton = keyCode == KeyEvent.KEYCODE_BACK;
-//            if (event.getAction() == KeyEvent.ACTION_DOWN) {
-//                if (isBackButton && mCustomView != null) {
-//                    return true;
-//                } else if (boundKeyCodes.contains(keyCode)) {
-//                    return true;
-//                } else if (isBackButton) {
-//                    return engine.canGoBack();
-//                }
-//            } else if (event.getAction() == KeyEvent.ACTION_UP) {
-//                if (isBackButton && mCustomView != null) {
-//                    hideCustomView();
-//                    return true;
-//                } else if (boundKeyCodes.contains(keyCode)) {
-//                    String eventName = null;
-//                    switch (keyCode) {
-//                        case KeyEvent.KEYCODE_VOLUME_DOWN:
-//                            eventName = "volumedownbutton";
-//                            break;
-//                        case KeyEvent.KEYCODE_VOLUME_UP:
-//                            eventName = "volumeupbutton";
-//                            break;
-//                        case KeyEvent.KEYCODE_SEARCH:
-//                            eventName = "searchbutton";
-//                            break;
-//                        case KeyEvent.KEYCODE_MENU:
-//                            eventName = "menubutton";
-//                            break;
-//                        case KeyEvent.KEYCODE_BACK:
-//                            eventName = "backbutton";
-//                            break;
-//                    }
-//                    if (eventName != null) {
-//                        sendJavascriptEvent(eventName);
-//                        return true;
-//                    }
-//                } else if (isBackButton) {
-//                    return engine.goBack();
-//                }
-//            }
-//            return null;
-//        }
-
         @Override
         public Boolean onDispatchKeyEvent(KeyEvent event) {
             int keyCode = event.getKeyCode();
-            Log.e("Keyboard", keyCode + " , " + KeyEvent.KEYCODE_MENU);
             boolean isBackButton = keyCode == KeyEvent.KEYCODE_BACK;
             if (event.getAction() == KeyEvent.ACTION_DOWN) {
                 if (isBackButton && mCustomView != null) {
@@ -634,10 +564,6 @@ public class CordovaWebViewImpl implements CordovaWebView {
                     return engine.canGoBack();
                 }
             } else if (event.getAction() == KeyEvent.ACTION_UP) {
-                for (Integer str : boundKeyCodes) {
-                    Log.e("board  Code", keyCode + " , " + str);
-                }
-
                 if (isBackButton && mCustomView != null) {
                     hideCustomView();
                     return true;
@@ -670,7 +596,6 @@ public class CordovaWebViewImpl implements CordovaWebView {
             }
             return null;
         }
-
 
         @Override
         public boolean onNavigationAttempt(String url) {
