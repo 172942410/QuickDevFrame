@@ -14,7 +14,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.perry.frame"
+        applicationId "com.perry.qiulot"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

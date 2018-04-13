@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public abstract class BaseCompatActivity extends SwipeBackActivity {
 //		AppCompatActivity {
-	public static String TAG = "BaseCompatActivity";
+	public static String TAG = BaseCompatActivity.class.getSimpleName();
 	/**
 	 * 启动当前activity的Activity
 	 */
@@ -118,7 +118,7 @@ public abstract class BaseCompatActivity extends SwipeBackActivity {
 	 * @param message
      */
 	public void log(String message){
-		Log.i("WIFI_AS", TAG + ": \n   " + message);
+//		Log.i("WIFI_AS", TAG + ": \n   " + message);
 		Log.i(TAG, message + "");
 	}
 

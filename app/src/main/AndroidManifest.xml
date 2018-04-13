@@ -21,14 +21,26 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeLeftAndRightAnimation">
         <activity
-            android:name=".activity.TabActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-            <!--注意：首页面主题必须设置成不透明的；其余子页面主题需要设置成透明的 不然swipeBack的滑动返回会看见桌面，而不会看见上一级activity-->
+            android:name=".activity.SplashScreenActivity"
+            android:label="QIULOT"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.TabActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <!--注意：首页面主题必须设置成不透明的；其余子页面主题需要设置成透明的 不然swipeBack的滑动返回会看见桌面，而不会看见上一级activity-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity android:name=".activity.MainActivity"></activity>
@@ -58,7 +70,11 @@
             android:label="CordovaWebViewActivity"
             android:screenOrientation="portrait"
             />
-
+        <activity
+            android:name=".activity.CordovaChildActivity"
+            android:label="CordovaWebViewActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

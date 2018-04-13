@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -255,7 +256,6 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         webView.getSettings().setAppCacheEnabled(true);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);//设置缓冲大小，我设的是8M
-
         //使用cache资源,如果没有cache从网络上获取。或者使用LOAD_DEFAULT、LOAD_CACHE_ELSE_NETWORK
 //        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
@@ -263,7 +263,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-
+        webView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
         progressBar = (ProgressBar) findViewById(R.id.progressbar_top);
         iv_loading = (ImageView) findViewById(R.id.iv_loading);
         ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
@@ -279,7 +279,12 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
             }
         });
     }
-
+    final class InJavaScriptLocalObj {
+        @JavascriptInterface
+        public void showSource(String html) {
+            Log.e(TAG,"InJavaScriptLocalObj showSource HTML:"+ html);
+        }
+    }
     @Override
     public void initView() {
 //        findViewById(R.id.bar_back).setOnClickListener(new View.OnClickListener() {
@@ -449,6 +454,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
             else if(url.startsWith("http://") || url.startsWith("https://") ||url.startsWith("file:///")){
                 view.loadUrl(url);
                 Log.i("MyWebView",url);
+//                return true;
             }else{
                 Log.e(TAG,"抱歉走到 else 了 url:"+url);
             }
@@ -492,6 +498,9 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
                 Log.e(TAG,"onPageFinished :"+url);
                 return;
             }
+            //显示加载的url的html
+//            view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+            view.loadUrl("javascript:window.local_obj.showSource('<body>'+document.getElementsByTagName('html')[0].innerHTML+'</body>');");
 //				if(webView.canGoForward() && SiXinApplication.jumpUSer){
 //					webView.goForward();
 //					SiXinApplication.jumpUSer = false;
