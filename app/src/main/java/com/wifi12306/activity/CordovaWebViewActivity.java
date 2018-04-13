@@ -463,13 +463,32 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
             log("shouldInterceptRequest url:"+url);
-//            if(url.contains("cordova.js")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
-//                try {
-//                    return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("www/cordova.js"));
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
+            if(url.contains("QIUToken.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+                try {
+//                    return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("QIUToken.min.json"));
+                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",getBaseContext().getAssets().open("QIUToken.min.json"));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        log("QIUToken.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                    }
+
+                    return webResourceResponse;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(url.contains("SoccerGambling.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+                try {//text/html
+//                    application/json
+//                    application/json;charset=utf-8
+                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",getBaseContext().getAssets().open("SoccerGambling.min.json"));
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        log("SoccerGambling.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                    }
+                    return webResourceResponse;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             return super.shouldInterceptRequest(view, url);
         }
         @Override

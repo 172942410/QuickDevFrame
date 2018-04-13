@@ -17,8 +17,10 @@ public class SplashScreenActivity extends BaseCompatActivity {
             if(msg.what == 0){
                 Intent intent = new Intent();
                 intent.setClass(SplashScreenActivity.this,CordovaChildActivity.class);
-                intent.putExtra("url","http://www.baidu.com");
+//                intent.putExtra("url","http://www.baidu.com");
 //                intent.putExtra("url","http://www.uppit.com.cn/new/12306/index.html");
+                intent.putExtra("url","http://106.120.205.115:6023/WorldCup/home/index.html#/");
+
                 startActivity(intent);
                 finish();
             }
