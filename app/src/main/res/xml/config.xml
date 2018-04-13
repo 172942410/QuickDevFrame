@@ -18,7 +18,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-
+    <allow-intent href="market:*" />
     <!--以下是 网络地址调用本地插件需要添加的权限-->
     <!--<allow-navigation href="*" />-->
     <allow-navigation href="http://*/*" />
