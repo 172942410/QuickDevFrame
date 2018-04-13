@@ -16,6 +16,8 @@ import android.view.WindowManager;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -42,6 +44,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.util.List;
@@ -289,14 +292,18 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
             if("<head></head><body></body>".equals(replaceHtml) || replaceHtml.length()<30){
 
             }else {
-                webView.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        webView.removeJavascriptInterface("local_obj");
-                        webView.clearHistory();
-                        webView.loadData(replaceHtml, "text/html; charset=UTF-8", null);//这种写法可以正确解码
-                    }
-                });
+                //方案一：读取到url的html文件后修改替换对应的地址；替换成本地file:///android_asset/的文件后 实现重新load加载
+
+//                webView.post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        webView.removeJavascriptInterface("local_obj");
+//                        webView.clearHistory();
+////                        webView.loadData(replaceHtml, "text/html; charset=UTF-8", null);//这种写法可以正确解码
+////                        webView.loadDataWithBaseURL("file:///android_asset/", replaceHtml , "text/html", "utf-8", null);
+//                        webView.loadDataWithBaseURL("file:///android_asset/", replaceHtml , "text/html; charset=UTF-8", null, null);
+//                    }
+//                });
             }
         }
     }
@@ -452,7 +459,33 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         public MyCordovaWebViewClient(SystemWebViewEngine parentEngine) {
             super(parentEngine);
         }
-
+        //方案二：通过 shouldInterceptRequest 方法替换对应的文件
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+            log("shouldInterceptRequest url:"+url);
+//            if(url.contains("cordova.js")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+//                try {
+//                    return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("www/cordova.js"));
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+            return super.shouldInterceptRequest(view, url);
+        }
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                log("shouldInterceptRequest WebResourceRequest request:"+request.getUrl().toString());
+//                if(request.getUrl().toString().contains("cordova.js")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+//                    try {
+//                        return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("www/cordova.js"));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+            }
+            return super.shouldInterceptRequest(view, request);
+        }
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.e(TAG,"shouldOverrideUrlLoading url:"+url);
             if (url.endsWith(".apk")) {
