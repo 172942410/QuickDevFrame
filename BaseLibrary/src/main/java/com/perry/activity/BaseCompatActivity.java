@@ -38,7 +38,6 @@ public abstract class BaseCompatActivity extends SwipeBackActivity {
 	TextView textViewToolbarTitle;
 	/**
 	 * 1、在该方法中自动调用initLayoutId(),initView(),findView()，无需开发者手动调用
-	 * 2、初始化EventBus.getDefault().register(this);
 	 * @param savedInstanceState
      */
 	@Override
@@ -55,7 +54,7 @@ public abstract class BaseCompatActivity extends SwipeBackActivity {
 		initToolBar();
 		findView();
 		initView();
-		verifyStoragePermissions(this);
+//		verifyStoragePermissions(this);
 		ActivityController.addActivity(this,getClass());
 	}
 
@@ -199,6 +198,11 @@ public abstract class BaseCompatActivity extends SwipeBackActivity {
 		initStatusBar(isStatusBarShow);
 	}
 
+	/**
+	 * 这个字段在子Activity类的 initLayoutId 方法中设置为false会隐藏状态栏
+	 * 前提是该Activity 已经设置了全屏模式 代码onCreate中设置：getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	 * 或在主题 style中设置 <item name="android:windowFullscreen">true</item>
+	 */
 	protected boolean isStatusBarShow = true;
 	protected  void initStatusBar(boolean isShow){
 		if (isShow){

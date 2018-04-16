@@ -119,7 +119,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
     String title;
     String context;
     String pluginTitle;
-
+    String host;
 
     private void loadingDialogStop() {
         iv_loading.clearAnimation();
@@ -266,7 +266,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-        webView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
+//        webView.addJavascriptInterface(new InJavaScriptLocalObj(), "local_obj");
         progressBar = (ProgressBar) findViewById(R.id.progressbar_top);
         iv_loading = (ImageView) findViewById(R.id.iv_loading);
         ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
@@ -345,7 +345,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
                             if (!NetUtil.checkNet(CordovaWebViewActivity.this)) {
                                 progressBar.setVisibility(View.GONE);
                                 ll_loading.setVisibility(View.GONE);
-                                webView.setVisibility(View.GONE);
+//                                webView.setVisibility(View.GONE);
                                 ll_loading_failed.setVisibility(View.VISIBLE);
                                 tv_detial.setText("网络连接失败  点击");
                                 return;
@@ -452,9 +452,23 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
             throw new RuntimeException(e);
         }
     }
+    public byte[] getFromAssetsByte(String fileName) {
+        try {
+            //Return an AssetManager instance for your application's package
+            InputStream is = getBaseContext().getAssets().open(fileName);
+            int size = is.available();
+            // Read the entire asset into a local byte buffer.
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            // Convert the buffer into a string.
+            return buffer;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    String host;
-
+//    ExecutorService executorService  = Executors.newFixedThreadPool(2);
     private class MyCordovaWebViewClient extends SystemWebViewClient {
         public MyCordovaWebViewClient(SystemWebViewEngine parentEngine) {
             super(parentEngine);
@@ -463,32 +477,77 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
             log("shouldInterceptRequest url:"+url);
-            if(url.contains("QIUToken.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+//            /*
+            if(url.endsWith("QIUToken.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+//                final PipedOutputStream out = new PipedOutputStream();
+//                PipedInputStream in ;
+//                try {
+//                    in = new PipedInputStream(out);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    return null;
+//                }
+//                Runnable runnable = new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            try {
+//                                out.write(getFromAssetsByte("QIUToken.min.json"));
+//                                out.close();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//                    };
+//                    executorService.execute(runnable);
+                InputStream data ;
                 try {
-//                    return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("QIUToken.min.json"));
-                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",getBaseContext().getAssets().open("QIUToken.min.json"));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        log("QIUToken.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
-                    }
-
-                    return webResourceResponse;
+                    data = getBaseContext().getAssets().open("QIUToken.min.json");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return super.shouldInterceptRequest(view, url);
                 }
+//                                    return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("QIUToken.min.json"));
+                WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",data);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    log("QIUToken.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                }
+                return webResourceResponse;
             }
-            if(url.contains("SoccerGambling.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
-                try {//text/html
-//                    application/json
-//                    application/json;charset=utf-8
-                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",getBaseContext().getAssets().open("SoccerGambling.min.json"));
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        log("SoccerGambling.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
-                    }
-                    return webResourceResponse;
+            if(url.endsWith("SoccerGambling.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+//                final PipedOutputStream out = new PipedOutputStream();
+//                PipedInputStream in ;
+//                try {
+//                    in = new PipedInputStream(out);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                    return null;
+//                }
+//                Runnable runnable = new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            out.write(getFromAssetsByte("SoccerGambling.min.json"));
+//                            out.close();
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                };
+//                executorService.execute(runnable);
+                InputStream data ;
+                try {
+                    data = getBaseContext().getAssets().open("SoccerGambling.min.json");
                 } catch (IOException e) {
                     e.printStackTrace();
+                    return super.shouldInterceptRequest(view, url);
                 }
+                WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",data);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    log("SoccerGambling.json webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                }
+                return webResourceResponse;
             }
+//            */
             return super.shouldInterceptRequest(view, url);
         }
         @Override
@@ -566,13 +625,9 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
                 return;
             }
             //显示加载的url的html
-            view.loadUrl("javascript:window.local_obj.showSource(document.getElementsByTagName('html')[0].innerHTML);");
+//            view.loadUrl("javascript:window.local_obj.showSource(document.getElementsByTagName('html')[0].innerHTML);");
 //            view.loadUrl("javascript:window.local_obj.showSource('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
 //            view.loadUrl("javascript:window.local_obj.showSource('<body>'+document.getElementsByTagName('html')[0].innerHTML+'</body>');");
-//				if(webView.canGoForward() && SiXinApplication.jumpUSer){
-//					webView.goForward();
-//					SiXinApplication.jumpUSer = false;
-//				}
             if (url.startsWith("file:///")) {
             } else if (url.startsWith("http://") || url.startsWith("https://")) {
                 try {
@@ -644,7 +699,7 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
                 Log.e(TAG,"返回了 failingUrl.startsWith(baiduboxlite://)");
                 return;
             }
-            webView.setVisibility(View.GONE);
+//            webView.setVisibility(View.GONE);
             ll_loading_failed.setVisibility(View.VISIBLE);
 //            iv_loading_error.setImageResource(R.drawable.webview_load_noclient);
             tv_detial.setText("网络连接失败  点击");

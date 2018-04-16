@@ -12,6 +12,18 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="FullBleedTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/fadeAnimation</item>
+    </style>
+    <style name="fadeAnimation"  >
+        <!--<item name="android:activityOpenEnterAnimation">@anim/fade_in</item>-->
+        <item name="android:activityCloseExitAnimation">@anim/fade_out</item>
+        <!--<item name="android:activityOpenExitAnimation">@anim/fade_out</item>-->
+        <!--<item name="android:activityCloseEnterAnimation">@anim/fade_in</item>-->
+    </style>
+
     <style name="AppCompatNoStateBar" parent="AppCompatNoTitleBar">
         <!--<item name="android:windowTranslucentStatus">false</item>-->
         <!--<item name="android:windowTranslucentNavigation">true</item>-->
