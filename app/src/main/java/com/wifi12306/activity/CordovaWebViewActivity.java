@@ -553,14 +553,34 @@ public class CordovaWebViewActivity extends BaseCompatActivity {
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                log("shouldInterceptRequest WebResourceRequest request:"+request.getUrl().toString());
-//                if(request.getUrl().toString().contains("cordova.js")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
-//                    try {
-//                        return new WebResourceResponse("application/x-javascript","utf-8",getBaseContext().getAssets().open("www/cordova.js"));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
+                String url = request.getUrl().toString();
+                log("shouldInterceptRequest WebResourceRequest request:"+url);
+                //            /*
+                if(url.endsWith("QIUToken.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+                    InputStream data ;
+                    try {
+                        data = getBaseContext().getAssets().open("QIUToken.min.json");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return super.shouldInterceptRequest(view, url);
+                    }
+                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",data);
+                    log("QIUToken.json2 webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                    return webResourceResponse;
+                }
+                if(url.endsWith("SoccerGambling.json")){ //加载指定.js时 引导服务端加载本地Assets/www文件夹下的cordova.js
+                    InputStream data ;
+                    try {
+                        data = getBaseContext().getAssets().open("SoccerGambling.min.json");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return super.shouldInterceptRequest(view, url);
+                    }
+                    WebResourceResponse webResourceResponse = new WebResourceResponse("application/json","utf-8",data);
+//                    log("SoccerGambling.json2 webResourceResponse:" + webResourceResponse.getMimeType() + "," + webResourceResponse.getEncoding() + "," + webResourceResponse.getReasonPhrase()+","+webResourceResponse.getStatusCode());
+                    return webResourceResponse;
+                }
+//            */
             }
             return super.shouldInterceptRequest(view, request);
         }
